@@ -7,28 +7,37 @@ import java.awt.*;
 public class Main extends JApplet {
 
 	private static final long serialVersionUID = 1L;
-	private SortPanel selectionSortPanel = new SortPanel("Selection Sort");
-	private SortPanel insertionSortPanel = new SortPanel("Insertion Sort");
-	private SortPanel bubbleSortPanel = new SortPanel("Bubble Sort");
-	private SortPanel mergeSortPanel = new SortPanel("Merge Sort");
-	private SortPanel quickSortPanel = new SortPanel("Quick Sort");
-	private SortPanel heapSortPanel = new SortPanel("Heap Sort");
+	private SortPanel[] sortPanels = new SortPanel[6];
+	private int size = 100;
 	
 
 	public Main() {
 		setLayout(new  GridLayout(2, 3, 0, 0));
-		add(selectionSortPanel);
-		add(insertionSortPanel);
-		add(bubbleSortPanel);
-		add(mergeSortPanel);
-		add(quickSortPanel);
-		add(heapSortPanel);
+		int[] list = new int[size];
+		for (int i = 0; i < list.length; i++) {
+			list[i] = 1 + (int)(Math.random() * size);
+		}
+		sortPanels[0] = new SelectionSortPanel(" Selection Sort ", list);
+		/*sortPanels[1] = new SortPanel(" Insertion Sort ", list);
+		sortPanels[2] = new SortPanel(" Bubble Sort ", list);
+		sortPanels[3] = new SortPanel(" Merge Sort ", list);
+		sortPanels[4] = new SortPanel(" Quick Sort ", list);
+		sortPanels[5] = new SortPanel(" Heap Sort ", list);*/
+		
+		for (int i = 0; i < sortPanels.length; i++) {
+			if(sortPanels[i] != null){
+				add(sortPanels[i]);	
+				
+			}
+		}
+
 	}
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Sorting Algorithm Animations");
 		JApplet applet = new Main();
 		frame.add(applet);
+		//frame.setUndecorated(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setLocationRelativeTo(null);

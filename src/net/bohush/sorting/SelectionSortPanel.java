@@ -1,0 +1,86 @@
+package net.bohush.sorting;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
+public class SelectionSortPanel extends SortPanel {
+	private static final long serialVersionUID = 1L;
+	private int redColumn = -1;
+	private int blueColumn = -1;
+	private int greenColumn = -1;
+	private int sleepTime = 2;
+	
+	public SelectionSortPanel(String name, int[] list) {
+		super(name, list);
+	}
+
+	@Override
+	public void run() {
+		try {
+			long time = System.currentTimeMillis();
+			for (int i = 0; i < list.length - 1; i++) {
+				int currentMinIndex = i;
+				redColumn = currentMinIndex;
+				for (int j = i + 1; j < list.length; j++) {
+					blueColumn = j;
+					repaint();
+					Thread.sleep(3 * sleepTime);
+					if (list[currentMinIndex] > list[j]) {
+						currentMinIndex = j;
+						redColumn = currentMinIndex;
+						repaint();
+					}
+				}
+
+				if (currentMinIndex != i) {
+					int tmp = list[currentMinIndex];
+					list[currentMinIndex] = list[i];
+					list[i] = tmp;
+					repaint();
+					Thread.sleep(4 * sleepTime);
+				}
+				greenColumn++;
+				repaint();
+			}
+			greenColumn++;
+			redColumn = -1;
+			blueColumn = -1;
+			System.out.println((System.currentTimeMillis() - time) / 1000);
+		} catch (InterruptedException e) {
+		}
+		repaint();
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		int columnWidth = (getWidth() - 4 * BORDER_WIDTH) / size;
+		int columnHeight = (getHeight() - 4 * BORDER_WIDTH) / size;
+		for (int i = (greenColumn == -1 ? 0 : greenColumn); i < list.length; i++) {
+			g.setColor(Color.WHITE);
+			g.fillRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - list[i] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[i] * columnHeight);
+			g.setColor(Color.BLACK);
+			g.drawRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - list[i] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[i] * columnHeight);			
+		}
+		for (int i = 0; i <= greenColumn; i++) {
+			g.setColor(Color.GREEN);
+			g.fillRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - list[i] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[i] * columnHeight);
+			g.setColor(Color.BLACK);
+			g.drawRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - list[i] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[i] * columnHeight);			
+		}
+		if(redColumn != -1) {
+			g.setColor(Color.RED);
+			g.fillRect(2 * BORDER_WIDTH + columnWidth * redColumn, getHeight() - list[redColumn] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[redColumn] * columnHeight);
+			g.setColor(Color.BLACK);
+			g.drawRect(2 * BORDER_WIDTH + columnWidth * redColumn, getHeight() - list[redColumn] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[redColumn] * columnHeight);
+		}
+		if(blueColumn != -1) {
+			g.setColor(Color.BLUE);
+			g.fillRect(2 * BORDER_WIDTH + columnWidth * blueColumn, getHeight() - list[blueColumn] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[blueColumn] * columnHeight);
+			g.setColor(Color.BLACK);
+			g.drawRect(2 * BORDER_WIDTH + columnWidth * blueColumn, getHeight() - list[blueColumn] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[blueColumn] * columnHeight);
+		}
+
+	}
+
+}

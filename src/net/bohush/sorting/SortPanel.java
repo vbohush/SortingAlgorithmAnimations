@@ -8,20 +8,21 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-public class SortPanel extends JPanel {
+public abstract class SortPanel extends JPanel implements Runnable {
 	private static final long serialVersionUID = 1L;
-	private static final int SIZE = 100;
-	private static final int BORDER_WIDTH = 10;
+	protected static final int BORDER_WIDTH = 10;
 	private static final Dimension PREFFERED_DIMENSION = new Dimension(540, 440);
-	private int[] list = new int[SIZE];
+	protected int size;
+	protected int[] list;
 	private String name;
 	
-	public SortPanel(String name) {
+	public SortPanel(String name, int[] list) {
 		this.name = name;
+		this.size = list.length;
+		this.list = java.util.Arrays.copyOf(list, size);
 		setBackground(Color.BLACK);
-		for (int i = 0; i < list.length; i++) {
-			list[i] = 1 + (int)(Math.random() * SIZE);
-		}
+		Thread thread = new Thread(this);
+		thread.start();
 	}
 	
 	@Override
@@ -45,17 +46,10 @@ public class SortPanel extends JPanel {
 		g.setColor(Color.WHITE);
 		g.setFont(nameFont);
 		g.drawString(name, (getWidth() - nameFontMetrix.stringWidth(name)) / 2, BORDER_WIDTH + nameFontMetrix.getAscent() / 3);
-		
-		//draw list
-		int columnWidth = (getWidth() - 4 * BORDER_WIDTH) / SIZE;
-		int columnHeight = (getHeight() - 4 * BORDER_WIDTH) / SIZE;
-		System.out.println(columnWidth + " " + columnHeight);
-		for (int i = 0; i < list.length; i++) {
-			g.setColor(Color.WHITE);
-			g.fillRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - list[i] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[i] * columnHeight);
-			g.setColor(Color.BLACK);
-			g.drawRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - list[i] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[i] * columnHeight);			
-		}
+
 	}
+
+	@Override
+	public abstract void run();
 
 }

@@ -3,46 +3,35 @@ package net.bohush.sorting;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class SelectionSortPanel extends SortPanel {
+public class InsertionSortPanel extends SortPanel {
 	private static final long serialVersionUID = 1L;
 	private int redColumn = -1;
-	private int blueColumn = -1;
 	private int greenColumn = -1;
 	
-	public SelectionSortPanel(String name, int[] list, int sleepTime) {
+	public InsertionSortPanel(String name, int[] list, int sleepTime) {
 		super(name, list, sleepTime);
 	}
 
 	@Override
 	public void run() {
 		try {
-			for (int i = 0; i < list.length - 1; i++) {
-				int currentMinIndex = i;
-				redColumn = currentMinIndex;
-				for (int j = i + 1; j < list.length; j++) {
-					blueColumn = j;
-					repaint();
-					Thread.sleep(3 * sleepTime);
-					if (list[currentMinIndex] > list[j]) {
-						currentMinIndex = j;
-						redColumn = currentMinIndex;
-						repaint();
-					}
-				}
-
-				if (currentMinIndex != i) {
-					int tmp = list[currentMinIndex];
-					list[currentMinIndex] = list[i];
-					list[i] = tmp;
+			for (int i = 1; i < list.length; i++) {
+				greenColumn = i;
+				redColumn = greenColumn;
+				Thread.sleep(3 * sleepTime);
+				repaint();
+				int k;
+				for (k = i - 1; k >= 0 && list[k] > list[k + 1]; k--) {
+					int tmp = list[k + 1]; 
+					list[k + 1] = list[k];
+					list[k] = tmp;
+					redColumn = k;
 					repaint();
 					Thread.sleep(4 * sleepTime);
 				}
-				greenColumn++;
 				repaint();
 			}
-			greenColumn++;
 			redColumn = -1;
-			blueColumn = -1;
 		} catch (InterruptedException e) {
 		}
 		repaint();
@@ -71,13 +60,6 @@ public class SelectionSortPanel extends SortPanel {
 			g.setColor(Color.BLACK);
 			g.drawRect(2 * BORDER_WIDTH + columnWidth * redColumn, getHeight() - list[redColumn] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[redColumn] * columnHeight);
 		}
-		if(blueColumn != -1) {
-			g.setColor(Color.BLUE);
-			g.fillRect(2 * BORDER_WIDTH + columnWidth * blueColumn, getHeight() - list[blueColumn] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[blueColumn] * columnHeight);
-			g.setColor(Color.BLACK);
-			g.drawRect(2 * BORDER_WIDTH + columnWidth * blueColumn, getHeight() - list[blueColumn] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[blueColumn] * columnHeight);
-		}
-
 	}
 
 }

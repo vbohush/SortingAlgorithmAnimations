@@ -14,11 +14,13 @@ public abstract class SortPanel extends JPanel implements Runnable {
 	private static final Dimension PREFFERED_DIMENSION = new Dimension(540, 440);
 	protected int size;
 	protected int[] list;
+	protected int sleepTime;
 	private String name;
 	
-	public SortPanel(String name, int[] list) {
+	public SortPanel(String name, int[] list, int sleepTime) {
 		this.name = name;
 		this.size = list.length;
+		this.sleepTime = sleepTime;
 		this.list = java.util.Arrays.copyOf(list, size);
 		setBackground(Color.BLACK);
 		Thread thread = new Thread(this);

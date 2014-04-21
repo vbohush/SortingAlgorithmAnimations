@@ -17,9 +17,9 @@ public class Main extends JApplet {
 		for (int i = 0; i < list.length; i++) {
 			list[i] = 1 + (int)(Math.random() * size);
 		}
-		sortPanels[0] = new SelectionSortPanel(" Selection Sort ", list);
-		/*sortPanels[1] = new SortPanel(" Insertion Sort ", list);
-		sortPanels[2] = new SortPanel(" Bubble Sort ", list);
+		sortPanels[0] = new SelectionSortPanel(" Selection Sort ", list, 2);
+		sortPanels[1] = new InsertionSortPanel(" Insertion Sort ", list, 2);
+		/*sortPanels[2] = new SortPanel(" Bubble Sort ", list);
 		sortPanels[3] = new SortPanel(" Merge Sort ", list);
 		sortPanels[4] = new SortPanel(" Quick Sort ", list);
 		sortPanels[5] = new SortPanel(" Heap Sort ", list);*/

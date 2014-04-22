@@ -3,45 +3,82 @@ package net.bohush.sorting;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class InsertionSortPanel extends SortPanel {
+public class QuickSortPanel extends SortPanel {
 	private static final long serialVersionUID = 1L;
 	private int redColumn = -1;
 	private int blueColumn = -1;
+	private int cyanColumn = -1;
 	private int greenColumn = -1;
 	
-	public InsertionSortPanel(String name, int[] list, int sleepTime) {
+	public QuickSortPanel(String name, int[] list, int sleepTime) {
 		super(name, list, sleepTime);
 	}
 
 	@Override
 	public void run() {
 		try {
-			for (int i = 1; i < list.length; i++) {
-				greenColumn = i;
+			quicksort(0, list.length - 1);			
+		} catch (InterruptedException e) {
+		}
+		redColumn = -1;
+		blueColumn = -1;
+		cyanColumn = -1;
+		greenColumn = size - 1;
+		repaint();
+	}
+	
+	private void quicksort(int low, int high) throws InterruptedException {
+		int i = low;
+		int j = high;
+		Thread.sleep(sleepTime);
+		repaint();
+		int pivot = list[low + (high - low) / 2];
+		redColumn = low + (high - low) / 2;
+		
+		while (i <= j) {
+			while (list[i] < pivot) {
+				i++;
+				blueColumn = i;
 				Thread.sleep(3 * sleepTime);
 				repaint();
-				redColumn = greenColumn;
-				blueColumn = -1;
-				int k;
-				for (k = i - 1; k >= 0 && list[k] > list[k + 1]; k--) {
-					redColumn = k + 1;
-					blueColumn = k;
-					repaint();
-					Thread.sleep(4 * sleepTime);
-					int tmp = list[k + 1]; 
-					list[k + 1] = list[k];
-					list[k] = tmp;
-				}
-				redColumn = k + 1;
-				blueColumn = k;
+			}
+			while (list[j] > pivot) {
+				j--;
+				cyanColumn = j;
+				Thread.sleep(3 * sleepTime);
 				repaint();
 			}
-			redColumn = -1;
+
+			if (i <= j) {
+				int temp = list[i];
+				list[i] = list[j];
+				list[j] = temp;
+				if(i == redColumn) {
+					redColumn = j;
+				} else if (j == redColumn) {
+					redColumn = i;
+				}
+				Thread.sleep(4 * sleepTime);
+				repaint();
+				i++;
+				j--;
+			}
+		}
+
+		if (low < j) {
+			quicksort(low, j);
+		}
+		if (i < high) {
+			quicksort(i, high);
+		}
+		if(low > greenColumn) {
+			greenColumn = low;
 			blueColumn = -1;
-		} catch (InterruptedException e) {
+			cyanColumn = -1;
 		}
 		repaint();
 	}
+
 	
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -72,6 +109,14 @@ public class InsertionSortPanel extends SortPanel {
 			g.setColor(Color.BLACK);
 			g.drawRect(2 * BORDER_WIDTH + columnWidth * blueColumn, getHeight() - list[blueColumn] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[blueColumn] * columnHeight);
 		}
+		if(cyanColumn != -1) {
+			g.setColor(Color.CYAN);
+			g.fillRect(2 * BORDER_WIDTH + columnWidth * cyanColumn, getHeight() - list[cyanColumn] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[cyanColumn] * columnHeight);
+			g.setColor(Color.BLACK);
+			g.drawRect(2 * BORDER_WIDTH + columnWidth * cyanColumn, getHeight() - list[cyanColumn] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[cyanColumn] * columnHeight);
+		}
+
+
 	}
 
 }

@@ -30,7 +30,7 @@ public class Main extends JApplet {
 		sortPanels[2] = new BubbleSortPanel(" Bubble Sort ", list, sleepTime);
 		sortPanels[3] = new QuickSortPanel(" Quick Sort ", list, sleepTime);
 		sortPanels[4] = new MergeSortPanel(" Merge Sort ", list, sleepTime);
-		sortPanels[5] = new QuickSortPanel(" Quick Sort ", list, sleepTime);
+		sortPanels[5] = new HeapSortPanel(" Heap Sort ", list, sleepTime);
 		/*sortPanels[6] = new QuickSortPanel(" Quick Sort ", list, sleepTime);
 		sortPanels[7] = new QuickSortPanel(" Quick Sort ", list, sleepTime);
 		sortPanels[8] = new QuickSortPanel(" Quick Sort ", list, sleepTime);
@@ -46,7 +46,7 @@ public class Main extends JApplet {
 		JFrame frame = new JFrame("Sorting Algorithm Animations");
 		JApplet applet = new Main();
 		frame.add(applet);
-		//frame.setUndecorated(true);
+		frame.setUndecorated(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setLocationRelativeTo(null);

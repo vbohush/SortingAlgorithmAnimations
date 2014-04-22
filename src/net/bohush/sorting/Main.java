@@ -9,7 +9,7 @@ public class Main extends JApplet {
 	private static final long serialVersionUID = 1L;
 	private SortPanel[] sortPanels = new SortPanel[6];
 	private int size = 100;
-	private int sleepTime = 2;
+	private int sleepTime = 1;
 	
 
 	public Main() {

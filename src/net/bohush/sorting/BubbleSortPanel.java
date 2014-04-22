@@ -21,7 +21,7 @@ public class BubbleSortPanel extends SortPanel {
 				for (int i = 0; i < list.length - k; i++) {
 					redColumn = i;
 					repaint();
-					Thread.sleep(3 * sleepTime);
+					Thread.sleep(4 * sleepTime);
 					if (list[i] > list[i + 1]) {
 						redColumn = i + 1;
 						int temp = list[i];

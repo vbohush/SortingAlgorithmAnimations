@@ -39,13 +39,13 @@ public class QuickSortPanel extends SortPanel {
 			while (list[i] < pivot) {
 				i++;
 				blueColumn = i;
-				Thread.sleep(3 * sleepTime);
+				Thread.sleep(4 * sleepTime);
 				repaint();
 			}
 			while (list[j] > pivot) {
 				j--;
 				cyanColumn = j;
-				Thread.sleep(3 * sleepTime);
+				Thread.sleep(4 * sleepTime);
 				repaint();
 			}
 

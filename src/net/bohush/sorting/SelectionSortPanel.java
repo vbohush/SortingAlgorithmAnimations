@@ -22,7 +22,7 @@ public class SelectionSortPanel extends SortPanel {
 				for (int j = i + 1; j < list.length; j++) {
 					blueColumn = j;
 					repaint();
-					Thread.sleep(3 * sleepTime);
+					Thread.sleep(4 * sleepTime);
 					if (list[currentMinIndex] > list[j]) {
 						currentMinIndex = j;
 						redColumn = currentMinIndex;

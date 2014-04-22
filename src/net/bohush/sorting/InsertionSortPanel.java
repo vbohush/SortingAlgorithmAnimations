@@ -24,7 +24,7 @@ public class InsertionSortPanel extends SortPanel {
 					repaint();
 					redColumn = k + 1;
 					repaint();
-					Thread.sleep(4 * sleepTime);
+					Thread.sleep(3 * sleepTime);
 					int tmp = list[k + 1]; 
 					list[k + 1] = list[k];
 					list[k] = tmp;

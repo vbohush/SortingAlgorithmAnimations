@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 public abstract class SortPanel extends JPanel implements Runnable {
 	private static final long serialVersionUID = 1L;
 	protected static final int BORDER_WIDTH = 10;
-	private static final Dimension PREFFERED_DIMENSION = new Dimension(640, 540);
+	private static final Dimension PREFFERED_DIMENSION = new Dimension(340, 340);
 	protected int size;
 	protected int[] list;
 	protected int sleepTime;

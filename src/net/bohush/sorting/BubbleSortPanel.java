@@ -6,7 +6,6 @@ import java.awt.Graphics;
 public class BubbleSortPanel extends SortPanel {
 	private static final long serialVersionUID = 1L;
 	private int redColumn = -1;
-	private int blueColumn = -1;
 	private int greenColumn = -1;
 	
 	public BubbleSortPanel(String name, int[] list, int sleepTime) {
@@ -21,12 +20,10 @@ public class BubbleSortPanel extends SortPanel {
 				needNextPass = false;
 				for (int i = 0; i < list.length - k; i++) {
 					redColumn = i;
-					blueColumn = i + 1;
 					repaint();
 					Thread.sleep(3 * sleepTime);
 					if (list[i] > list[i + 1]) {
 						redColumn = i + 1;
-						blueColumn = -1;
 						int temp = list[i];
 						list[i] = list[i + 1];
 						list[i + 1] = temp;
@@ -39,7 +36,6 @@ public class BubbleSortPanel extends SortPanel {
 			}
 			greenColumn = 0;
 			redColumn = -1;
-			blueColumn = -1;
 		} catch (InterruptedException e) {
 		}
 		repaint();
@@ -69,12 +65,6 @@ public class BubbleSortPanel extends SortPanel {
 			g.fillRect(2 * BORDER_WIDTH + columnWidth * redColumn, getHeight() - list[redColumn] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[redColumn] * columnHeight);
 			g.setColor(Color.BLACK);
 			g.drawRect(2 * BORDER_WIDTH + columnWidth * redColumn, getHeight() - list[redColumn] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[redColumn] * columnHeight);
-		}
-		if(blueColumn != -1) {
-			g.setColor(Color.BLUE);
-			g.fillRect(2 * BORDER_WIDTH + columnWidth * blueColumn, getHeight() - list[blueColumn] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[blueColumn] * columnHeight);
-			g.setColor(Color.BLACK);
-			g.drawRect(2 * BORDER_WIDTH + columnWidth * blueColumn, getHeight() - list[blueColumn] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[blueColumn] * columnHeight);
 		}
 	}
 

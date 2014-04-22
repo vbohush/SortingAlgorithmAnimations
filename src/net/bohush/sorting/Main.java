@@ -9,7 +9,7 @@ public class Main extends JApplet {
 	private static final long serialVersionUID = 1L;
 	private SortPanel[] sortPanels = new SortPanel[6];
 	private int size = 100;
-	private int sleepTime = 1;
+	private int sleepTime = 2;
 	
 
 	public Main() {
@@ -29,8 +29,12 @@ public class Main extends JApplet {
 		sortPanels[1] = new InsertionSortPanel(" Insertion Sort ", list, sleepTime);
 		sortPanels[2] = new BubbleSortPanel(" Bubble Sort ", list, sleepTime);
 		sortPanels[3] = new QuickSortPanel(" Quick Sort ", list, sleepTime);
-		sortPanels[4] = new InsertionSortPanel(" Insertion Sort ", list, sleepTime);
-		sortPanels[5] = new BubbleSortPanel(" Bubble Sort ", list, sleepTime);
+		sortPanels[4] = new MergeSortPanel(" Merge Sort ", list, sleepTime);
+		sortPanels[5] = new QuickSortPanel(" Quick Sort ", list, sleepTime);
+		/*sortPanels[6] = new QuickSortPanel(" Quick Sort ", list, sleepTime);
+		sortPanels[7] = new QuickSortPanel(" Quick Sort ", list, sleepTime);
+		sortPanels[8] = new QuickSortPanel(" Quick Sort ", list, sleepTime);
+		*/
 		
 		for (int i = 0; i < sortPanels.length; i++) {
 			add(sortPanels[i]);				
@@ -42,7 +46,7 @@ public class Main extends JApplet {
 		JFrame frame = new JFrame("Sorting Algorithm Animations");
 		JApplet applet = new Main();
 		frame.add(applet);
-		frame.setUndecorated(true);
+		//frame.setUndecorated(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setLocationRelativeTo(null);

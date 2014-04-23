@@ -17,11 +17,7 @@ public class Main extends JApplet {
 		int[] list = new int[size];
 		for (int i = 0; i < list.length; i++) {
 			list[i] = i + 1;
-			//list[i] = size - i;
-			//list[i] = (size / 4) * (int)(1 + Math.random() * 4);
-			//list[i] = (size / 2);
 		}
-		//list[(int)(Math.random() * size)] = size;
 		//shuffle
 		for (int i = 0; i < list.length; i++) {
 			int index = (int) (Math.random() * list.length);
@@ -45,15 +41,27 @@ public class Main extends JApplet {
 		}
 
 	}
+	
+	public void beginAnimation() {
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		for (int i = 0; i < sortPanels.length; i++) {
+			sortPanels[i].beginAnimation();
+		}		
+	}
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Sorting Algorithm Animations");
-		JApplet applet = new Main();
-		frame.add(applet);
-		//frame.setUndecorated(true);
+		Main main = new Main();
+		frame.add(main);
+		frame.setUndecorated(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+		main.beginAnimation();
 	}
 }

@@ -11,11 +11,12 @@ import javax.swing.JPanel;
 public abstract class SortPanel extends JPanel implements Runnable {
 	private static final long serialVersionUID = 1L;
 	protected static final int BORDER_WIDTH = 10;
-	private static final Dimension PREFFERED_DIMENSION = new Dimension(440, 340);
+	private static final Dimension PREFFERED_DIMENSION = new Dimension(640, 360);
 	protected int size;
 	protected int[] list;
 	protected int sleepTime;
 	private String name;
+	private Thread thread;
 	
 	public SortPanel(String name, int[] list, int sleepTime) {
 		this.name = name;
@@ -23,8 +24,11 @@ public abstract class SortPanel extends JPanel implements Runnable {
 		this.sleepTime = sleepTime;
 		this.list = java.util.Arrays.copyOf(list, size);
 		setBackground(Color.BLACK);
-		Thread thread = new Thread(this);
-		thread.start();
+		thread = new Thread(this);
+	}
+	
+	public void beginAnimation() {
+		thread.start();		
 	}
 	
 	@Override

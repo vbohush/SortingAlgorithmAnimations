@@ -3,13 +3,13 @@ package net.bohush.sorting;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class CombSortPanel extends SortPanel {
+public class ShellSortPanel extends SortPanel {
 	private static final long serialVersionUID = 1L;
 	private int redColumn = -1;
 	private int blueColumn = -1;
 	private int greenColumn = -1;
 	
-	public CombSortPanel(String name, int[] list, int sleepTime) {
+	public ShellSortPanel(String name, int[] list, int sleepTime) {
 		super(name, list, sleepTime);
 	}
 
@@ -17,38 +17,35 @@ public class CombSortPanel extends SortPanel {
 	public void run() {
 		try {
 			
-		    int gap = list.length;
-		    boolean swapped = true;
-		    boolean sorted = true;
-		    while (gap > 1 || swapped) {
-		        if (gap > 1) {
-		            gap = (int) (gap / 1.3);
-		        }
-		        swapped = false;
-		        sorted = true;
-		        for (int i = 0; i + gap < list.length; i++) {
-		        	redColumn = i;
-		        	blueColumn = i + gap;
-					Thread.sleep(4 * sleepTime);
-		            if (list[i] > list[i + gap]) {
-		                int t = list[i];
-		                list[i] = list[i + gap];
-		                list[i + gap] = t;
-		    			repaint();
-		    			Thread.sleep(4 * sleepTime);
-		                swapped = true;		                
-		            }
-		        	if((sorted) && (i > 0)) {
-		        		if (list[i] > list[i - 1]) {
-		        			greenColumn = i;
-		        		} else {
-			        		greenColumn = -1;
-			        		sorted = false;	        			
-		        		}
-		        	}
-		        	repaint();
-		        }
-		    }
+			int increment = list.length / 2;
+			while (increment > 0) {
+				for (int i = increment; i < list.length; i++) {
+					redColumn = i;
+					int j = i;
+					int temp = list[i];
+					repaint();
+					Thread.sleep(3 * sleepTime);
+					while (j >= increment && list[j - increment] > temp) {
+						blueColumn = j - increment;
+						if(increment == 1) {
+							greenColumn = blueColumn - 1;
+						}
+						repaint();
+						Thread.sleep(4 * sleepTime);
+						list[j] = list[j - increment];
+						j = j - increment;
+					}
+					repaint();
+					Thread.sleep(2 * sleepTime);
+					list[j] = temp;
+				}
+				if (increment == 2) {
+					increment = 1;
+				} else {
+					increment *= (5.0 / 11);
+				}
+				
+			}
 			redColumn = -1;
 			blueColumn = -1;	
 			greenColumn = size - 1;

@@ -35,8 +35,8 @@ public class Main extends JApplet {
 		sortPanels[3] = new QuickSortPanel(" Quick Sort ", list, sleepTime);
 		sortPanels[4] = new MergeSortPanel(" Merge Sort ", list, sleepTime);
 		sortPanels[5] = new HeapSortPanel(" Heap Sort ", list, sleepTime);
-		sortPanels[6] = new CocktailSortPanel(" Cocktail sort ", list, sleepTime);
-		sortPanels[7] = new QuickSortPanel(" Quick Sort ", list, sleepTime);
+		sortPanels[6] = new CocktailSortPanel(" Cocktail Sort ", list, sleepTime);
+		sortPanels[7] = new CombSortPanel(" Comb Sort ", list, sleepTime);
 		sortPanels[8] = new QuickSortPanel(" Quick Sort ", list, sleepTime);
 		
 		

@@ -7,7 +7,7 @@ import java.awt.*;
 public class Main extends JApplet {
 
 	private static final long serialVersionUID = 1L;
-	private SortPanel[] sortPanels = new SortPanel[6];
+	private SortPanel[] sortPanels = new SortPanel[9];
 	private int size = 100;
 	private int sleepTime = 1;
 	
@@ -17,7 +17,11 @@ public class Main extends JApplet {
 		int[] list = new int[size];
 		for (int i = 0; i < list.length; i++) {
 			list[i] = i + 1;
+			//list[i] = size - i;
+			//list[i] = (size / 4) * (int)(1 + Math.random() * 4);
+			//list[i] = (size / 2);
 		}
+		//list[(int)(Math.random() * size)] = size;
 		//shuffle
 		for (int i = 0; i < list.length; i++) {
 			int index = (int) (Math.random() * list.length);
@@ -31,10 +35,10 @@ public class Main extends JApplet {
 		sortPanels[3] = new QuickSortPanel(" Quick Sort ", list, sleepTime);
 		sortPanels[4] = new MergeSortPanel(" Merge Sort ", list, sleepTime);
 		sortPanels[5] = new HeapSortPanel(" Heap Sort ", list, sleepTime);
-		/*sortPanels[6] = new QuickSortPanel(" Quick Sort ", list, sleepTime);
+		sortPanels[6] = new CocktailSortPanel(" Cocktail sort ", list, sleepTime);
 		sortPanels[7] = new QuickSortPanel(" Quick Sort ", list, sleepTime);
 		sortPanels[8] = new QuickSortPanel(" Quick Sort ", list, sleepTime);
-		*/
+		
 		
 		for (int i = 0; i < sortPanels.length; i++) {
 			add(sortPanels[i]);				

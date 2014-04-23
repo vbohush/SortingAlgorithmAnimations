@@ -44,7 +44,7 @@ public class MergeSortPanel extends SortPanel {
 	    int current1 = 0;
 	    redColumn = start1 + current1;
 	    int current2 = 0;
-	    blueColumn = start2 + current2 - 1;
+	    blueColumn = start2 + current2;
 	    int current3 = 0;
 
 		while (current1 < list1.length && current2 < list2.length) {

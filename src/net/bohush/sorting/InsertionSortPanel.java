@@ -8,8 +8,14 @@ public class InsertionSortPanel extends SortPanel {
 	private int redColumn = -1;
 	private int greenColumn = -1;
 	
-	public InsertionSortPanel(String name, int[] list, int sleepTime, int width, int height) {
-		super(name, list, sleepTime, width, height);
+	public InsertionSortPanel(String name, int sleepTime, int width, int height) {
+		super(name, sleepTime, width, height);
+	}
+
+	@Override
+	public void reset() {
+		redColumn = -1;
+		greenColumn = -1;		
 	}
 
 	@Override

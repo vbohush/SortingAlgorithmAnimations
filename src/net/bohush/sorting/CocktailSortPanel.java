@@ -9,8 +9,15 @@ public class CocktailSortPanel extends SortPanel {
 	private int greenColumn1 = -1;
 	private int greenColumn2 = -1;
 	
-	public CocktailSortPanel(String name, int[] list, int sleepTime, int width, int height) {
-		super(name, list, sleepTime, width, height);
+	public CocktailSortPanel(String name, int sleepTime, int width, int height) {
+		super(name, sleepTime, width, height);
+	}
+
+	@Override
+	public void reset() {
+		redColumn = -1;
+		greenColumn1 = -1;
+		greenColumn2 = -1;		
 	}
 
 	@Override

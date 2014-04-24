@@ -9,10 +9,17 @@ public class ShellSortPanel extends SortPanel {
 	private int blueColumn = -1;
 	private int greenColumn = -1;
 	
-	public ShellSortPanel(String name, int[] list, int sleepTime, int width, int height) {
-		super(name, list, sleepTime, width, height);
+	public ShellSortPanel(String name, int sleepTime, int width, int height) {
+		super(name, sleepTime, width, height);
 	}
 
+	@Override
+	public void reset() {
+		redColumn = -1;
+		blueColumn = -1;
+		greenColumn = -1;		
+	}
+	
 	@Override
 	public void run() {
 		try {

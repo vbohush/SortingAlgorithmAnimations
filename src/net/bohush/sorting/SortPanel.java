@@ -16,20 +16,19 @@ public abstract class SortPanel extends JPanel implements Runnable {
 	protected int[] list;
 	protected int sleepTime;
 	private String name;
-	private Thread thread;
 	
-	public SortPanel(String name, int[] list, int sleepTime, int width, int height) {
+	public SortPanel(String name, int sleepTime, int width, int height) {
 		prefferedDimension = new Dimension(width, height);
 		this.name = name;
-		this.size = list.length;
 		this.sleepTime = sleepTime;
-		this.list = java.util.Arrays.copyOf(list, size);
 		setBackground(Color.BLACK);
-		thread = new Thread(this);
 	}
 	
-	public void beginAnimation() {
-		thread.start();		
+	public void setList(int[] list) {
+		reset();
+		this.size = list.length;
+		this.list = java.util.Arrays.copyOf(list, size);
+		setBackground(Color.BLACK);
 	}
 	
 	@Override
@@ -46,7 +45,7 @@ public abstract class SortPanel extends JPanel implements Runnable {
 		g.drawRect(BORDER_WIDTH, BORDER_WIDTH, getWidth() - 2 * BORDER_WIDTH, getHeight() - 2 * BORDER_WIDTH);
 		
 		//draw title
-		Font nameFont = new Font("Monospaced", Font.BOLD, 16);
+		Font nameFont = new Font(Font.MONOSPACED, Font.BOLD, 18);
 		FontMetrics nameFontMetrix = getFontMetrics(nameFont);		
 		g.setColor(Color.BLACK);
 		g.fillRect((getWidth() - nameFontMetrix.stringWidth(name)) / 2, 0, nameFontMetrix.stringWidth(name), BORDER_WIDTH + nameFontMetrix.getAscent() / 3);
@@ -58,5 +57,7 @@ public abstract class SortPanel extends JPanel implements Runnable {
 
 	@Override
 	public abstract void run();
+
+	public abstract void reset();
 
 }

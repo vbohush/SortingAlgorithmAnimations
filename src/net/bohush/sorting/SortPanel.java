@@ -11,14 +11,15 @@ import javax.swing.JPanel;
 public abstract class SortPanel extends JPanel implements Runnable {
 	private static final long serialVersionUID = 1L;
 	protected static final int BORDER_WIDTH = 10;
-	private static final Dimension PREFFERED_DIMENSION = new Dimension(640, 360);
+	private Dimension prefferedDimension;
 	protected int size;
 	protected int[] list;
 	protected int sleepTime;
 	private String name;
 	private Thread thread;
 	
-	public SortPanel(String name, int[] list, int sleepTime) {
+	public SortPanel(String name, int[] list, int sleepTime, int width, int height) {
+		prefferedDimension = new Dimension(width, height);
 		this.name = name;
 		this.size = list.length;
 		this.sleepTime = sleepTime;
@@ -33,7 +34,7 @@ public abstract class SortPanel extends JPanel implements Runnable {
 	
 	@Override
 	public Dimension getPreferredSize() {
-		return PREFFERED_DIMENSION;
+		return prefferedDimension;
 	}
 	
 	@Override

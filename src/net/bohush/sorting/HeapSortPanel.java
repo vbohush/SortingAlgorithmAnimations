@@ -9,8 +9,8 @@ public class HeapSortPanel extends SortPanel {
 	private int greenColumn = -1;
 	private java.util.ArrayList<Integer> heapList = new java.util.ArrayList<Integer>();
 	
-	public HeapSortPanel(String name, int[] list, int sleepTime) {
-		super(name, list, sleepTime);
+	public HeapSortPanel(String name, int[] list, int sleepTime, int width, int height) {
+		super(name, list, sleepTime, width, height);
 	}
 
 	@Override

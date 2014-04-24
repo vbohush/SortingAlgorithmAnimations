@@ -8,8 +8,8 @@ public class BubbleSortPanel extends SortPanel {
 	private int redColumn = -1;
 	private int greenColumn = -1;
 	
-	public BubbleSortPanel(String name, int[] list, int sleepTime) {
-		super(name, list, sleepTime);
+	public BubbleSortPanel(String name, int[] list, int sleepTime, int width, int height) {
+		super(name, list, sleepTime, width, height);
 	}
 
 	@Override

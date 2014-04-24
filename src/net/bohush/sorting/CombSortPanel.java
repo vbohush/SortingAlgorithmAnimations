@@ -9,8 +9,8 @@ public class CombSortPanel extends SortPanel {
 	private int blueColumn = -1;
 	private int greenColumn = -1;
 	
-	public CombSortPanel(String name, int[] list, int sleepTime) {
-		super(name, list, sleepTime);
+	public CombSortPanel(String name, int[] list, int sleepTime, int width, int height) {
+		super(name, list, sleepTime, width, height);
 	}
 
 	@Override

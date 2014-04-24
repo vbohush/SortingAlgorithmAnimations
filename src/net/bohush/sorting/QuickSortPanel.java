@@ -10,8 +10,8 @@ public class QuickSortPanel extends SortPanel {
 	private int cyanColumn = -1;
 	private int greenColumn = -1;
 	
-	public QuickSortPanel(String name, int[] list, int sleepTime) {
-		super(name, list, sleepTime);
+	public QuickSortPanel(String name, int[] list, int sleepTime, int width, int height) {
+		super(name, list, sleepTime, width, height);
 	}
 
 	@Override

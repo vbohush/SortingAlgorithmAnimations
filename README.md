@@ -19,3 +19,5 @@ Algorithms used in 4 types of input data:
 - few unique
 - reversed
 - almost sorted
+
+Download binary .jar: http://bohush.net/sorting.jar

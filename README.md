@@ -3,6 +3,8 @@ SortingAlgorithmAnimations
 
 Watch video http://youtu.be/ZZuD6iUe3Pc
 
+Download binary .jar: http://bohush.net/sorting.jar
+
 Visualization and comparison of 9 different sorting algorithms:
 - selection sort
 - shell sort
@@ -20,4 +22,3 @@ Algorithms used in 4 types of input data:
 - reversed
 - almost sorted
 
-Download binary .jar: http://bohush.net/sorting.jar

@@ -16,7 +16,7 @@ Visualization and comparison of 9 different sorting algorithms:
 - comb sort
 - cocktail sort
 
-Algorithms used in 4 types of input data:
+The algorithms are used in 4 types of input data:
 - random
 - few unique
 - reversed

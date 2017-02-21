@@ -22,3 +22,7 @@ The algorithms are used in 4 types of input data:
 - reversed
 - almost sorted
 
+## License
+
+See the [LICENSE](LICENSE.txt) file for license rights and limitations (MIT).
+

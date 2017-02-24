@@ -46,12 +46,20 @@ public class Main extends JApplet {
 		@Override
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
-			g.setColor(Color.WHITE);
 			Font animationNameFont = new Font(Font.MONOSPACED, Font.BOLD, 150);
 			FontMetrics animationNameFontFontMetrix = getFontMetrics(animationNameFont);
 			g.setFont(animationNameFont);
 			int x = (getWidth() - animationNameFontFontMetrix.stringWidth(animationName)) / 2;
 			int y = (getHeight() - animationNameFontFontMetrix.getLeading()) / 2;
+
+			float startH = (float)Math.random() / 2;
+			float finishH = 0.5f + (float)Math.random() / 2;
+			float S = 1; // Saturation
+			float B = 1; // Brightness
+			Color startColor = Color.getHSBColor(startH, S, B);
+			Color finishColor = Color.getHSBColor(finishH, S, B);
+			GradientPaint gradientPaint = new GradientPaint(x, 0, startColor, x + animationNameFontFontMetrix.stringWidth(animationName), 0,finishColor);
+			((Graphics2D)g).setPaint(gradientPaint);
 			g.drawString(animationName, x, y);
 		}
 	}
@@ -61,7 +69,7 @@ public class Main extends JApplet {
 			
 			this.animationName = animationName;
 			repaint();
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 			this.animationName = "";
 			repaint();
 			for (int i = 0; i < sortPanels.length; i++) {

@@ -1,7 +1,6 @@
 package net.bohush.sorting;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class HeapSortPanel extends SortPanel {
 	private static final long serialVersionUID = 1L;
@@ -46,37 +45,29 @@ public class HeapSortPanel extends SortPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
+
+		Graphics2D g2d = (Graphics2D) g;
 		int columnWidth = (getWidth() - 4 * BORDER_WIDTH) / size;
 		int columnHeight = (getHeight() - 4 * BORDER_WIDTH) / size;
+		int y = getHeight() - size * columnHeight - 3 * BORDER_WIDTH;
+		int height = size * columnHeight;
+		for (int i = 0; i < list.length; i++) {
+			g2d.fillRect(2 * BORDER_WIDTH + columnWidth * i, y, columnWidth, height);
+		}
+
+
+
 		for (int i = heapList.size(); i < list.length; i++) {
-			g.setColor(Color.WHITE);
-			g.fillRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - list[i] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[i] * columnHeight);
-			g.setColor(Color.BLACK);
-			g.drawRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - list[i] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[i] * columnHeight);			
+			g2d.setPaint(getGradientPaint(i, list[i], columnWidth));
+			g.fillRect(2 * BORDER_WIDTH + columnWidth * i, y, columnWidth, height);
 		}
 		for (int i = 0; i < heapList.size(); i++) {
-			g.setColor(Color.CYAN);
-			g.fillRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - heapList.get(i) * columnHeight - 2 * BORDER_WIDTH, columnWidth, heapList.get(i) * columnHeight);
-			g.setColor(Color.BLACK);
-			g.drawRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - heapList.get(i) * columnHeight - 2 * BORDER_WIDTH, columnWidth, heapList.get(i) * columnHeight);			
+			g2d.setPaint(getGradientPaint(i, heapList.get(i), columnWidth));
+			g.fillRect(2 * BORDER_WIDTH + columnWidth * i, y, columnWidth, height);
 		}
-		
-		if(greenColumn != -1) {
-			for (int i = greenColumn; i < size; i++) {
-				g.setColor(Color.GREEN);
-				g.fillRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - list[i] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[i] * columnHeight);
-				g.setColor(Color.BLACK);
-				g.drawRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - list[i] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[i] * columnHeight);			
-			}
-		}
-		if(redColumn != -1) {
-			g.setColor(Color.RED);
-			g.fillRect(2 * BORDER_WIDTH + columnWidth * redColumn, getHeight() - heapList.get(redColumn) * columnHeight - 2 * BORDER_WIDTH, columnWidth, heapList.get(redColumn) * columnHeight);
-			g.setColor(Color.BLACK);
-			g.drawRect(2 * BORDER_WIDTH + columnWidth * redColumn, getHeight() - heapList.get(redColumn) * columnHeight - 2 * BORDER_WIDTH, columnWidth, heapList.get(redColumn) * columnHeight);
-		}
+
 	}
-	
+
 	/** Add a new object into the heap 
 	 * @throws InterruptedException */
 	public void add(Integer newObject) throws InterruptedException {

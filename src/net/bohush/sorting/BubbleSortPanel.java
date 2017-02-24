@@ -46,32 +46,5 @@ public class BubbleSortPanel extends SortPanel {
 		}
 		repaint();
 	}
-	
-	@Override
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		int columnWidth = (getWidth() - 4 * BORDER_WIDTH) / size;
-		int columnHeight = (getHeight() - 4 * BORDER_WIDTH) / size;
-		for (int i = 0; i < (greenColumn == -1 ? list.length : greenColumn); i++) {
-			g.setColor(Color.WHITE);
-			g.fillRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - list[i] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[i] * columnHeight);
-			g.setColor(Color.BLACK);
-			g.drawRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - list[i] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[i] * columnHeight);			
-		}
-		if(greenColumn != -1) {
-			for (int i = greenColumn; i < list.length; i++) {
-				g.setColor(Color.GREEN);
-				g.fillRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - list[i] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[i] * columnHeight);
-				g.setColor(Color.BLACK);
-				g.drawRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - list[i] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[i] * columnHeight);			
-			}
-		}
-		if(redColumn != -1) {
-			g.setColor(Color.RED);
-			g.fillRect(2 * BORDER_WIDTH + columnWidth * redColumn, getHeight() - list[redColumn] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[redColumn] * columnHeight);
-			g.setColor(Color.BLACK);
-			g.drawRect(2 * BORDER_WIDTH + columnWidth * redColumn, getHeight() - list[redColumn] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[redColumn] * columnHeight);
-		}
-	}
 
 }

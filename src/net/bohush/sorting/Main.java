@@ -111,18 +111,6 @@ public class Main extends JApplet {
 		main.beginAnimation("Random", list);
 		
 		for (int i = 0; i < list.length; i++) {
-			list[i] = (1 + i / (size / 4) ) * (size / 4);
-		}
-		for (int i = 0; i < list.length; i++) {
-			int index = (int) (Math.random() * list.length);
-			int temp = list[i];
-			list[i] = list[index];
-			list[index] = temp;
-		}
-		main.beginAnimation("Few Unique", list);
-
-		
-		for (int i = 0; i < list.length; i++) {
 			list[i] = size - i;
 		}
 		main.beginAnimation("Reversed", list);

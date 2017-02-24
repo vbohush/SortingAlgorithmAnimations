@@ -1,9 +1,7 @@
 SortingAlgorithmAnimations
 ==========================
 
-Watch video http://youtu.be/ZZuD6iUe3Pc
-
-Download binary .jar: http://bohush.net/sorting.jar
+Watch video https://www.youtube.com/watch?v=14oa9QBT5Js
 
 Visualization and comparison of 9 different sorting algorithms:
 - selection sort
